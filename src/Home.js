@@ -5,33 +5,6 @@ import Typography from '@material-ui/core/Typography';
 
 
 
-// <Popover
-//         id={id}
-//         open={open}
-//         anchorEl={this.state.anchorEl}
-//         onClose={this.handleClose}
-//         anchorOrigin={{
-//           vertical: 'bottom',
-//           horizontal: 'center',
-//         }}
-//         transformOrigin={{
-//           vertical: 'top',
-//           horizontal: 'center',
-//         }}
-//       >
-//         <Typography style={{width:'100px',height:'100px'}}>The content of the Popover.</Typography>
-//       </Popover>
-//       handlePop = (event) => {
-//     this.setState({anchorEl:event.currentTarget});
-//   };
-
-// handleClose = () => {
-//     this.setState({anchorEl:null})
-//   };
-
-
-
-
 
 class Home extends Component {
  constructor(props) {
@@ -58,8 +31,9 @@ handleClick=()=>{
         })
       .then(response =>  response.text())
       .then(resData => {
-        this.setState({data:resData})
-        console.log(resData)
+        const rawdata=resData.replace(/[^a-zA-Z ]/g, "")
+        this.setState({data:rawdata})
+        
   
         
       });
@@ -80,16 +54,17 @@ handleClick=()=>{
             
             placeholder="Type complaint here...."
             onChange={ this.handleChange }
-            style={{width:'100%',height:'100%',marginTop:'20px',}}
+            style={{width:'100%',height:'100%',marginTop:'20px',marginLeft:'10px'}}
 
          />
          <button 
          onClick={this.handleClick}
          style={{marginLeft:'350px',}}
          >Predict</button>
+         <h3 style={{align:'center'}}>Predicted product:</h3>
 
 
-         {this.state.data}
+         <p style={{color:'red'}}>{this.state.data}</p>
 
          
        

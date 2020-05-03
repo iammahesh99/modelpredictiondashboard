@@ -26,7 +26,7 @@ export default function Appbar() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" color="inherit">
-            Photos
+            NLP MODEL
           </Typography>
         </Toolbar>
       </AppBar>
