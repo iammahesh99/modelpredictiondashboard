@@ -46,8 +46,8 @@ class ReviewList extends Component{
     	.then(response =>  response.text())
     	.then(resData => {
     		//const Data=resData;
-
-		const Data = resData;
+		const rawdata=resData.replace(/[^a-zA-Z ]/g, "")
+		const Data = rawdata;
 		Toast.loading('Searching');
           setTimeout(() => {
             Toast.hide();
