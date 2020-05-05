@@ -1,12 +1,12 @@
 import React from 'react';
-import Home from './Home.js';
+import MainScreen from './MainScreen.js';
 import Appbar from './Appbar'
 
 function App() {
   return (
     <div className="App">
     <Appbar />
-    <Home />
+    <MainScreen />
 
       
     </div>

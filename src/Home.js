@@ -3,27 +3,28 @@ import Popover from '@material-ui/core/Popover';
 import Typography from '@material-ui/core/Typography';
 
 
-
-
-
 class Home extends Component {
  constructor(props) {
     super(props);
     this.state={
-      value:null,
-      predicted:null,
-      data:null
+      
+      open:false,
+      data:null,
+      message:props.message,
 
     }
   
   }
-  handleChange=(e)=>
-    {
-      this.setState({value:e.target.value})
-    }
 handleClick=()=>{
+  this.setState({open:!this.state.open})
+
+}
+
+componentDidMount(){
+  console.log(this.state.message)
+    
   const proxyurl = "https://cors-anywhere.herokuapp.com/";
-  const uri='https://complaintpredictiontype.herokuapp.com/predict?message='+this.state.value;
+  const uri="https://complaintpredictiontype.herokuapp.com/predict?message="+this.state.message;
     //console.log(uri)
 
       fetch(proxyurl+uri,{
@@ -47,28 +48,17 @@ handleClick=()=>{
   render() 
   {
     
-    
     return (
-      <div style={{width:'400px',height:'200px'}}>
-      <textarea
-            
-            placeholder="Type complaint here...."
-            onChange={ this.handleChange }
-            style={{width:'100%',height:'100%',marginTop:'20px',marginLeft:'10px'}}
+      <div style={{width:'400px',backgroundColor:'#ECF0F1'}}>
+      <p >This complaint is <span style={{color:'red'}}>{this.state.data}</span> type</p>
+      <button onClick={this.handleClick}>Show Message</button><br/>
+      {this.state.open?
+      <p
+            style={{width:'100%'}}>
+            {this.state.message}
 
-         />
-         <button 
-         onClick={this.handleClick}
-         style={{marginLeft:'350px',}}
-         >Predict</button>
-         <h3 style={{align:'center'}}>Predicted product:</h3>
-
-
-         <p style={{color:'red'}}>{this.state.data}</p>
-
-         
-       
-         
+         </p>:null}
+ 
       </div>
       );
   }
